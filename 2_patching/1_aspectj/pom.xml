@@ -46,6 +46,12 @@
             <artifactId>patching-baseline</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.zalando.techtalks.hacking-java</groupId>
+            <artifactId>patching-tests</artifactId>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
         </dependency>

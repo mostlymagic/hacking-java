@@ -11,8 +11,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>1_aspectj</module>
-        <module>2_jcodemodel</module>
+        <module>2_javaparser</module>
         <module>x_baseline</module>
+        <module>x_tests</module>
     </modules>
 
     <artifactId>patching</artifactId>
@@ -23,6 +24,12 @@
                 <groupId>org.zalando.techtalks.hacking-java</groupId>
                 <artifactId>patching-baseline</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zalando.techtalks.hacking-java</groupId>
+                <artifactId>patching-tests</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

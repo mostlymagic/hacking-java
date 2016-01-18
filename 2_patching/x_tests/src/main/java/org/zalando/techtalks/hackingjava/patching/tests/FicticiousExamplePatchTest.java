@@ -1,4 +1,4 @@
-package org.zalando.techtalks.hackingjava.patching.aspectj;
+package org.zalando.techtalks.hackingjava.patching.tests;
 
 import static java.util.Arrays.asList;
 
@@ -19,7 +19,7 @@ import org.zalando.techtalks.hackingjava.patching.baseline.FicticiousExample;
  * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
  * @since   18.01.2016
  */
-public class FicticiousExamplePatchTest {
+public abstract class FicticiousExamplePatchTest {
 
     private FicticiousExample fe;
 
