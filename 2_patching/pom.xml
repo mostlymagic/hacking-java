@@ -12,9 +12,19 @@
     <modules>
         <module>1_aspectj</module>
         <module>2_jcodemodel</module>
+        <module>x_baseline</module>
     </modules>
 
     <artifactId>patching</artifactId>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.zalando.techtalks.hacking-java</groupId>
+                <artifactId>patching-baseline</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
