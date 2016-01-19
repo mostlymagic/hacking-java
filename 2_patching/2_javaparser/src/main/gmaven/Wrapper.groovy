@@ -22,7 +22,6 @@ public class Wrapper {
 
 
     private applyPatch(CompilationUnit compilationUnit) {
-
         compilationUnit.accept(new PatchVisitor(), null)
     }
 
@@ -32,10 +31,10 @@ class PatchVisitor extends VoidVisitorAdapter<Void> {
 
     public void visit(final MethodDeclaration n, final Object arg) {
         if (n.name == "yUStringConcatInLoop") {
-            n.body = new BlockStmt()
+            n.body = new BlockStmt() // delete existing method body
             patchStringMethod(n.body, n.parameters[0], n.parameters[1])
         } else if (n.name == "yUNoReuseInteger") {
-            n.body = new BlockStmt()
+            n.body = new BlockStmt() // delete existing method body
             patchIntegerMethod(n.body, n.parameters[0])
         } else super.visit(n, arg)
     }
@@ -51,49 +50,42 @@ class PatchVisitor extends VoidVisitorAdapter<Void> {
         blockStatement.getStmts().add(new ReturnStmt(methodCall))
     }
 
-    private patchStringMethod(BlockStmt blockStatement, Parameter iterableParameter, Parameter delimParameter) {
+    private patchStringMethod(BlockStmt blockStatement, Parameter iterable, Parameter delim) {
 
-        def stringBuilderType = new ClassOrInterfaceType("StringBuilder")
+        def sbType = new ClassOrInterfaceType("StringBuilder")
         def sbId = new VariableDeclaratorId("sb")
-        def stringBuilderDeclaration = new VariableDeclarationExpr(stringBuilderType, [
-                new VariableDeclarator(sbId, new ObjectCreationExpr(null, stringBuilderType, []))
+        def sbDecl = new VariableDeclarationExpr(sbType, [
+                new VariableDeclarator(sbId, new ObjectCreationExpr(null, sbType, []))
         ])
 
-        def iteratorType = new ClassOrInterfaceType("Iterator<String>")
-        def iterableIteratorCall = new MethodCallExpr(new NameExpr(iterableParameter.id.name), "iterator")
-        def iteratorId = new VariableDeclaratorId("iterator")
-        def iteratorDeclaration = new VariableDeclarationExpr(iteratorType, [new VariableDeclarator(iteratorId, iterableIteratorCall)])
+        def itType = new ClassOrInterfaceType("Iterator<String>")
+        def itCall = new MethodCallExpr(new NameExpr(iterable.id.name), "iterator")
+        def itId = new VariableDeclaratorId("iterator")
+        def itDecl = new VariableDeclarationExpr(itType, [new VariableDeclarator(itId, itCall)])
 
 
-        def iteratorExpr = new NameExpr(iteratorId.name)
+        def itExpr = new NameExpr(itId.name)
         def sbExpr = new NameExpr(sbId.name)
 
         blockStatement.stmts.addAll([
-                new ExpressionStmt(stringBuilderDeclaration),
-                new ExpressionStmt(iteratorDeclaration),
+                new ExpressionStmt(sbDecl),
+                new ExpressionStmt(itDecl),
                 new IfStmt(
-                        new MethodCallExpr(iteratorExpr, "hasNext"),
+                        new MethodCallExpr(itExpr, "hasNext"),
                         new BlockStmt([
-                                new ExpressionStmt(new MethodCallExpr(sbExpr, "append", [new MethodCallExpr(iteratorExpr, "next")])),
-                                new WhileStmt(new MethodCallExpr(iteratorExpr, "hasNext"), new BlockStmt([
+                                new ExpressionStmt(new MethodCallExpr(sbExpr, "append", [new MethodCallExpr(itExpr, "next")])),
+                                new WhileStmt(new MethodCallExpr(itExpr, "hasNext"), new BlockStmt([
                                         new ExpressionStmt(new MethodCallExpr(
-                                                new MethodCallExpr(sbExpr, "append", [new NameExpr(delimParameter.id.name)]),
-                                                "append", [new MethodCallExpr(iteratorExpr, "next")]
+                                                new MethodCallExpr(sbExpr, "append", [new NameExpr(delim.id.name)]),
+                                                "append", [new MethodCallExpr(itExpr, "next")]
                                         ))
-
                                 ]))
                         ]),
-                        null
+                        null  // <-- no else block
                 ),
                 new ReturnStmt(new MethodCallExpr(sbExpr, "toString"))
         ])
 
-    }
-
-    private deleteChildren(BlockStmt blockStatement) {
-        new ArrayList(blockStatement.childrenNodes).each {
-            it -> it.parentNode = null
-        }
     }
 
 }
