@@ -9,8 +9,42 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
+    <modules>
+        <module>x_baseline</module>
+        <module>x_tests</module>
+        <module>2_checker-framework</module>
+    </modules>
+    <profiles>
+        <profile>
+            <id>openjdk</id>
+            <activation>
+                <property>
+                    <name>java.runtime.name</name>
+                    <value>openjdk runtime environment</value>
+                </property>
+            </activation>
+            <modules>
+                <module>1_errorprone</module>
+            </modules>
+        </profile>
+    </profiles>
+
 
     <artifactId>defect-analysis</artifactId>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.zalando.techtalks.hacking-java</groupId>
+                <artifactId>defect-analysis-baseline</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zalando.techtalks.hacking-java</groupId>
+                <artifactId>defect-analysis-tests</artifactId>
+                <version>${project.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

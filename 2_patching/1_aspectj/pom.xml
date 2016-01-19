@@ -24,7 +24,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <complianceLevel>1.8</complianceLevel>
+                    <complianceLevel>${compiler.source.level}</complianceLevel>
                     <weaveDependencies>
                         <weaveDependency>
                             <groupId>org.zalando.techtalks.hacking-java</groupId>
