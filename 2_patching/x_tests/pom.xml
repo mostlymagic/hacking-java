@@ -11,6 +11,8 @@
     </parent>
 
     <artifactId>patching-tests</artifactId>
+    <name>Hacking Java - Library Patching - Test Suite</name>
+
 
     <dependencies>
         <dependency>

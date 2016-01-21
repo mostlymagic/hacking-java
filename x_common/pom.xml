@@ -11,6 +11,8 @@
 
     <packaging>pom</packaging>
     <artifactId>common</artifactId>
+    <name>Hacking Java - Common</name>
+
     <modules>
         <module>compiler-testing</module>
         <module>reflection</module>

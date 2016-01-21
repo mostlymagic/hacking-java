@@ -8,6 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <name>Hacking Java - Library Patching - AspectJ</name>
 
     <artifactId>patching-aspectj</artifactId>
     <build>

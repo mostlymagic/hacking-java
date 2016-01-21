@@ -10,8 +10,26 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>defect-analysis-errorprone</artifactId>
+    <name>Hacking Java - Defect Analysis - Google ErrorProne</name>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <forkCount>0</forkCount>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.google.errorprone</groupId>
             <artifactId>error_prone_core</artifactId>
@@ -30,6 +48,12 @@
             <groupId>org.zalando.techtalks.hacking-java</groupId>
             <artifactId>defect-analysis-baseline</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
 
     </dependencies>
     <properties>

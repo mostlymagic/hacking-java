@@ -9,6 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
+
+    <name>Hacking Java - Library Patching</name>
+
     <modules>
         <module>1_aspectj</module>
         <module>2_javaparser</module>

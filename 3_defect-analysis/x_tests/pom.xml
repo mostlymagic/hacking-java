@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>defect-analysis-tests</artifactId>
+    <name>Hacking Java - Defect Analysis - Test Suite</name>
+
     <dependencies>
         <dependency>
             <groupId>org.zalando.techtalks.hacking-java</groupId>

@@ -9,10 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
+    <name>Hacking Java - Defect Analysis</name>
+
     <modules>
         <module>x_baseline</module>
         <module>x_tests</module>
+        <module>1_errorprone</module>
         <module>2_checker-framework</module>
+        <module>3_aspectj</module>
     </modules>
     <profiles>
         <profile>
@@ -24,7 +28,7 @@
                 </property>
             </activation>
             <modules>
-                <module>1_errorprone</module>
+
             </modules>
         </profile>
     </profiles>

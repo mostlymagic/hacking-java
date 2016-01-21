@@ -10,6 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>defect-analysis-baseline</artifactId>
+    <name>Hacking Java - Defect Analysis - Baseline</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.zalando.techtalks.hacking-java</groupId>
+            <artifactId>common-compiler-testing</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>
