@@ -1,19 +1,14 @@
 package org.zalando.techtalks.hackingjava.defectanalysis.errorprone.engine;
 
+import com.google.common.base.Joiner;
+import com.google.errorprone.ErrorProneCompiler;
 import java.io.File;
-
 import java.net.URISyntaxException;
-
 import java.util.Set;
-
 import org.zalando.techtalks.hackingjava.common.compiler.CompilationResult;
 import org.zalando.techtalks.hackingjava.common.compiler.ForkedRun;
 import org.zalando.techtalks.hackingjava.defectanalysis.baseline.engine.DefectAnalysisEngine;
 import org.zalando.techtalks.hackingjava.defectanalysis.baseline.immutable.AbstractUser;
-
-import com.google.common.base.Joiner;
-
-import com.google.errorprone.ErrorProneCompiler;
 
 public class ErrorProneAnalysisEngine implements DefectAnalysisEngine {
 
@@ -34,12 +29,14 @@ public class ErrorProneAnalysisEngine implements DefectAnalysisEngine {
 
     @Override
     public CompilationResult compile(final File sourceFile) {
-        return new ForkedRun(ErrorProneAnalysisEngine.class).withAdditionalClassLoaderFromClass(AbstractUser.class)
-                                                            .withBootClassPathMatcher("com", "google", "errorprone")
-                                                            .withBootClassPathMatcher("org", "checkerframework")
-                                                            .withArg(ErrorProneCompiler.class)
-                                                            .withArg("-Xep:" + Joiner.on(',').join(activatedChecks))
-                                                            .withArg(sourceFile.getAbsolutePath()).run();
+        return new ForkedRun(ErrorProneAnalysisEngine.class)
+                .withAdditionalClassLoaderFromClass(AbstractUser.class)
+                .withBootClassPathMatcher("com", "google", "errorprone")
+                .withBootClassPathMatcher("org", "checkerframework")
+                .withArg(ErrorProneCompiler.class)
+                .withArg("-d").tempDirAsArg()
+                .withArg("-Xep:" + Joiner.on(',').join(activatedChecks))
+                .withArg(sourceFile.getAbsolutePath()).run();
 
     }
 

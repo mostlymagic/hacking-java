@@ -19,6 +19,7 @@ public class AspectJPolicyEnforcementEngine implements DefectAnalysisEngine {
                 .withArg(Main.class)
                 .withArg(format("-%s", COMPLIANCE_LEVEL))
                 .withArg("-target").withArg(COMPLIANCE_LEVEL)
+                .withArg("-d").tempDirAsArg()
                 .withArg(sourceFile.getAbsolutePath())
                 .withArg(aspectFile.getAbsolutePath())
                 .run();

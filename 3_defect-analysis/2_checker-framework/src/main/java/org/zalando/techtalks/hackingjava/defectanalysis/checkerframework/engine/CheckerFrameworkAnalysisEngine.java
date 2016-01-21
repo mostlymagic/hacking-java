@@ -19,6 +19,7 @@ public class CheckerFrameworkAnalysisEngine implements DefectAnalysisEngine {
         return new ForkedRun(CheckerFrameworkAnalysisEngine.class)
                 .withAdditionalClassLoaderFromClass(AbstractUser.class)
                 .withJavaC()
+                .withArg("-d").tempDirAsArg()
                 .withArg("-processor").withArg(checkerClass)
                 .withArg(sourceFile.getAbsolutePath())
                 .run();

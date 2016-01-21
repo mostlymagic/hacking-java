@@ -4,6 +4,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
+import com.google.common.io.Files;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +12,6 @@ import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -22,6 +22,7 @@ import java.util.function.Predicate;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import static com.google.common.collect.Sets.newLinkedHashSet;
+import static java.util.Arrays.asList;
 
 public final class ForkedRun {
     private static final Joiner SEP_JOINER = Joiner.on(File.pathSeparatorChar);
@@ -46,6 +47,17 @@ public final class ForkedRun {
 
     public ForkedRun withJavaC() {
         this.useJavaC = true;
+        return this;
+    }
+
+    public ForkedRun tempDirAsArg() {
+        this.args.add(Files.createTempDir().getAbsolutePath());
+        return this;
+    }
+
+    public ForkedRun withDebugPort(final int port) {
+        vmArgs.addAll(
+                asList("-Xdebug", "-Xnoagent", "-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=" + port));
         return this;
     }
 
@@ -227,7 +239,7 @@ public final class ForkedRun {
             while (current != null) {
                 if (current instanceof URLClassLoader) {
                     final URLClassLoader urlClassLoader = (URLClassLoader) current;
-                    urls.addAll(Arrays.asList(urlClassLoader.getURLs()));
+                    urls.addAll(asList(urlClassLoader.getURLs()));
                 } else {
                     throw new IllegalStateException("Bad ClassLoader: " + current);
                 }
