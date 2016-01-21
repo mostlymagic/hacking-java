@@ -61,8 +61,6 @@
         <module>1_valueobjects</module>
         <module>2_patching</module>
         <module>3_defect-analysis</module>
-        <module>4_proxying</module>
-        <module>5_dynamic-queries</module>
     </modules>
 
 
