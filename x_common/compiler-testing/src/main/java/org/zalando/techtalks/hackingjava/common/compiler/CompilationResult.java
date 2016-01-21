@@ -1,14 +1,10 @@
-package org.zalando.techtalks.hackingjava.defectanalysis.baseline.engine;
+package org.zalando.techtalks.hackingjava.common.compiler;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since   19.01.2016
- */
 public final class CompilationResult {
 
     private final boolean success;

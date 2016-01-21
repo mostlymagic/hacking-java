@@ -2,25 +2,45 @@ package org.zalando.techtalks.hackingjava.defectanalysis.errorprone.engine;
 
 import java.io.File;
 
-import java.util.Collections;
+import java.net.URISyntaxException;
 
-import org.zalando.techtalks.hackingjava.defectanalysis.baseline.engine.CompilationResult;
+import java.util.Set;
+
+import org.zalando.techtalks.hackingjava.common.compiler.CompilationResult;
+import org.zalando.techtalks.hackingjava.common.compiler.ForkedRun;
 import org.zalando.techtalks.hackingjava.defectanalysis.baseline.engine.DefectAnalysisEngine;
+import org.zalando.techtalks.hackingjava.defectanalysis.baseline.immutable.AbstractUser;
+
+import com.google.common.base.Joiner;
 
 import com.google.errorprone.ErrorProneCompiler;
 
-import com.sun.tools.javac.main.Main;
-
-/**
- * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since   19.01.2016
- */
 public class ErrorProneAnalysisEngine implements DefectAnalysisEngine {
+
+    private final Set<String> activatedChecks;
+
+    public ErrorProneAnalysisEngine(final Set<String> activatedChecks) {
+        this.activatedChecks = activatedChecks;
+    }
+
+    static String jarPathFromClass(final Class<?> referenceClass) {
+        try {
+            return new File(referenceClass.getProtectionDomain().getCodeSource().getLocation().toURI())
+                    .getAbsolutePath();
+        } catch (URISyntaxException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
     @Override
     public CompilationResult compile(final File sourceFile) {
-        final Main.Result result = ErrorProneCompiler.compile(new String[] {sourceFile.getAbsolutePath()});
-        final boolean status = result.isOK();
+        return new ForkedRun(ErrorProneAnalysisEngine.class).withAdditionalClassLoaderFromClass(AbstractUser.class)
+                                                            .withBootClassPathMatcher("com", "google", "errorprone")
+                                                            .withBootClassPathMatcher("org", "checkerframework")
+                                                            .withArg(ErrorProneCompiler.class)
+                                                            .withArg("-Xep:" + Joiner.on(',').join(activatedChecks))
+                                                            .withArg(sourceFile.getAbsolutePath()).run();
 
-        return new CompilationResult(status, Collections.<String>emptyList(), Collections.<String>emptyList());
     }
+
 }

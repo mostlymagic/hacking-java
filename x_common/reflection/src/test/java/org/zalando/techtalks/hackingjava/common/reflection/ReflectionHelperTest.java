@@ -8,10 +8,6 @@ import static org.junit.Assert.assertThat;
 import static org.zalando.techtalks.hackingjava.common.reflection.ReflectionHelper.instantiate;
 import static org.zalando.techtalks.hackingjava.common.reflection.ReflectionHelper.invokeMethod;
 
-/**
- * @author Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since 15.07.2015
- */
 public class ReflectionHelperTest {
 
     static class NotMuchHere {

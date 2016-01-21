@@ -12,10 +12,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/**
- * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since   10.07.2015
- */
 public final class ClassLoaderHelper {
 
     private static final ReadWriteLock LOCK = new ReentrantReadWriteLock();

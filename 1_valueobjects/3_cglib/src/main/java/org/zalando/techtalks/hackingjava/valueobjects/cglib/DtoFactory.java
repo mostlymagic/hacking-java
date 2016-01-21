@@ -25,10 +25,6 @@ import static com.google.common.collect.Maps.newHashMapWithExpectedSize;
 import static com.google.common.collect.Maps.newLinkedHashMap;
 import static java.beans.Introspector.getBeanInfo;
 
-/**
- * @author Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since 14.01.2016
- */
 class DtoFactory {
     static Class<?> createBeanClass(
     /* fully qualified class name */

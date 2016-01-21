@@ -1,18 +1,13 @@
 package org.zalando.techtalks.hackingjava.defectanalysis.errorprone.immutable;
 
+import com.google.errorprone.annotations.Immutable;
 import java.util.Date;
 import java.util.List;
-
 import org.zalando.techtalks.hackingjava.defectanalysis.baseline.immutable.AbstractFakeImmutableUser;
+import org.zalando.techtalks.hackingjava.defectanalysis.baseline.marker.IllBehaved;
 
-import com.google.errorprone.annotations.Immutable;
-
-/**
- * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since   19.01.2016
- */
 @Immutable
-public class FakeErrorProneImmutableUser extends AbstractFakeImmutableUser {
+public class FakeErrorProneImmutableUser extends AbstractFakeImmutableUser implements IllBehaved {
     private String name;
     private List<String> nickNames;
     private Date birthDate;

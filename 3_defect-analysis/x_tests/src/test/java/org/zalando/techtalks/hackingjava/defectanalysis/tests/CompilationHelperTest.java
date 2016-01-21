@@ -1,19 +1,13 @@
 package org.zalando.techtalks.hackingjava.defectanalysis.tests;
 
-import static org.junit.Assert.assertThat;
-
 import java.io.File;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-
 import org.junit.Test;
 
-/**
- * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since   19.01.2016
- */
+import static org.junit.Assert.assertThat;
+
 public class CompilationHelperTest {
 
     @Test

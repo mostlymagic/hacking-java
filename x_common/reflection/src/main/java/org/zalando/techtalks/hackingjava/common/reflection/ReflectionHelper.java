@@ -12,10 +12,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.function.Predicate;
 
-/**
- * @author Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since 11.07.2015
- */
 public class ReflectionHelper {
 
     public static <T> T instantiate(final Class<? extends T> type, final Object... params) {

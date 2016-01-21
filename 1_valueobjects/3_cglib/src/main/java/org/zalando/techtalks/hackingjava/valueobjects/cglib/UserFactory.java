@@ -7,10 +7,6 @@ import java.util.List;
 
 import static org.zalando.techtalks.hackingjava.valueobjects.cglib.DtoFactory.createBeanClass;
 
-/**
- * @author Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since 14.01.2016
- */
 public class UserFactory {
     public static Object createUser(final String firstName,
                                     final String lastName,

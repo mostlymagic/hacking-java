@@ -1,24 +1,17 @@
 package org.zalando.techtalks.hackingjava.patching.tests;
 
-import static java.util.Arrays.asList;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.zalando.techtalks.hackingjava.patching.baseline.FicticiousExample;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
-
 import static org.junit.Assert.assertThat;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import org.zalando.techtalks.hackingjava.patching.baseline.FicticiousExample;
-
-/**
- * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since   18.01.2016
- */
 public abstract class FicticiousExamplePatchTest {
 
     private FicticiousExample fe;

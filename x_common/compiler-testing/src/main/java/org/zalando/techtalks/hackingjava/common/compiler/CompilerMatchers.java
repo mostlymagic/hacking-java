@@ -1,17 +1,12 @@
-package org.zalando.techtalks.hackingjava.compilertesting;
+package org.zalando.techtalks.hackingjava.common.compiler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
-/**
- * @author  Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since   08.07.2015
- */
 public final class CompilerMatchers {
 
     private CompilerMatchers() { }
@@ -29,7 +24,7 @@ public final class CompilerMatchers {
             @Override
             public void describeTo(final Description description) {
                 description.appendText("A failed compilation with the following errors ") //
-                           .appendValueList("", ", ", "", expectedErrors);
+                        .appendValueList("", ", ", "", expectedErrors);
             }
 
             @Override

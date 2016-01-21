@@ -14,16 +14,12 @@ import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.StandardLocation;
 import javax.tools.ToolProvider;
+import org.zalando.techtalks.hackingjava.common.compiler.CompilationResult;
 
 import static java.util.stream.Collectors.toList;
 import static javax.tools.Diagnostic.Kind.ERROR;
 import static javax.tools.Diagnostic.Kind.WARNING;
-import static javax.tools.StandardLocation.CLASS_OUTPUT;
 
-/**
- * @author Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since 08.07.2015
- */
 public class CompilerRun {
 
     private final List<File> sources;
@@ -113,9 +109,7 @@ public class CompilerRun {
                                                           it.getMessage(locale))
                                                  .collect(toList());
 
-        final Iterable<? extends File> outputLocations = fileManager.getLocation(CLASS_OUTPUT);
-        final File outputFolder = outputLocations.iterator().next();
-        return new CompilationResult(success, warnings, errors, outputFolder);
+        return new CompilationResult(success, warnings, errors);
 
     }
 }

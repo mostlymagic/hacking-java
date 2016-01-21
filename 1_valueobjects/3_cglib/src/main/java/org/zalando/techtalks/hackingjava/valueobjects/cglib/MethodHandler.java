@@ -6,10 +6,6 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Map;
 
-/**
- * @author Sean Patrick Floyd (sean.floyd@zalando.de)
- * @since 15.01.2016
- */
 enum MethodHandler {
     EQUALS {
         @SuppressWarnings({"rawtypes", "unchecked"}) @Override
