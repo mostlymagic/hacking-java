@@ -17,5 +17,17 @@ This will be our reference data structure:
       - zipCode   (int)
       - city     (String)
 
-Our goal will be to create the value objects as immutables with Builders.
-Ideally, our value objects will implement Comparable, using lastName, firstName and birthDate (all descending)
+We will be to create these value objects in three flavors: mutable, immutable and immutable with Builder.
+Every solution will have to implement equals(), hashCode(), toString(), getters and (for mutable classes) setters.
+Ideally, our value objects will implement Comparable, using lastName, firstName and birthDate (all descending).
+
+These are the approaches I will present:
+
+- [Project Lombok](1_lombok/README.md), annotation processing using internal compiler APIs. Powerful, but hacky.
+- [Google AutoValue](2_autovalue/README.md), annotation processing done "correctly", using abstract classes and
+  generated sub-classes. Less powerful, but uses official APIs only.
+- [CGLib BeanGenerator](3_cglib/README.md), dynamically creating classes at runtime through byte code generation.
+  Extremely hacky!
+- [JCodeModel](4_jcodemodel/README.md), a code generation library which I will use for code generation at build time.
+
+- [Test Suite](x_tests/README.md), a common test suite that all above technologies will have to pass
