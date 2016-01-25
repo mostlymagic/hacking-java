@@ -33,8 +33,7 @@ public class UserFactory {
 
 
     static class Types {
-        private static final String PACKAGE = "org.zalando.techtalks.hackingjava.valueobjects" +
-            ".cglib.dto";
+        private static final String PACKAGE = "org.zalando.techtalks.hackingjava.valueobjects.cglib.dto";
         private static final Class<?> USER;
         private static final Class<?> ADDRESS;
 
