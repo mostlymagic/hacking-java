@@ -23,11 +23,11 @@ Ideally, our value objects will implement Comparable, using lastName, firstName 
 
 These are the approaches I will present:
 
-- [Project Lombok](1_lombok/README.md), annotation processing using internal compiler APIs. Powerful, but hacky.
-- [Google AutoValue](2_autovalue/README.md), annotation processing done "correctly", using abstract classes and
+- [Project Lombok](1_lombok), annotation processing using internal compiler APIs. Powerful, but hacky.
+- [Google AutoValue](2_autovalue), annotation processing done "correctly", using abstract classes and
   generated sub-classes. Less powerful, but uses official APIs only.
-- [CGLib BeanGenerator](3_cglib/README.md), dynamically creating classes at runtime through byte code generation.
+- [CGLib BeanGenerator](3_cglib), dynamically creating classes at runtime through byte code generation.
   Extremely hacky!
-- [JCodeModel](4_jcodemodel/README.md), a code generation library which I will use for code generation at build time.
+- [JCodeModel](4_jcodemodel), a code generation library which I will use for code generation at build time.
 
-- [Test Suite](x_tests/README.md), a common test suite that all above technologies will have to pass
+- [Test Suite](x_tests), a common test suite that all above technologies will have to pass

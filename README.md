@@ -7,6 +7,6 @@ Each section then highlights a few different technologies that offer solutions f
 
 Currently, the sections are:
 
-- Value Objects (Creating value objects in Java is a very tedious and error-prone manual process)
-- Patching a third party library in an automated way
-- Build-time defect analysis
+- [Value Objects](1_valueobjects) (Creating value objects in Java is a very tedious and error-prone manual process)
+- [Patching a third party library](2_patching) in an automated way
+- [Build-time defect analysis](3_defect-analysis)
